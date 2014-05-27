@@ -2,6 +2,7 @@ require "tic_tac_toe_ai/version"
 require "tic_tac_toe_ai/game"
 require "tic_tac_toe_ai/board"
 
-module TicTacToeAi
-  # Your code goes here...
+module TicTacToe
+  # game = Game.new
+  # game.start_game
 end
