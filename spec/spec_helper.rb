@@ -1,1 +1,1 @@
-require_relative "../lib/tic_tac_toe_ai.rb"
+require_relative "../lib/tic_tac_toe_ai"
