@@ -15,8 +15,17 @@ module TicTacToe
          "_____________\n" +
          "| - | - | - |\n" +
          "+++++++++++++")
-    	end
+    	end	
     end  
+
+    describe "add_move" do
+    	it "adds a cross to board" do
+    		subject.add_move("x", 4)
+    		expect(subject.board).to eq (["-","-","-",
+    																	"-","x","-",
+    																	"-","-","-"])
+    	end
+    end
   end
 end
 

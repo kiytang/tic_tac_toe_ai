@@ -20,6 +20,10 @@ module TicTacToe
        "+++++++++++++"
     end
 
+    def add_move(symbol, number)
+      @board[4] = symbol
+    end
+
     # def choose_marker
     #   marker == ' '
     #   while not (marker == 'X' || marker == 'O')
