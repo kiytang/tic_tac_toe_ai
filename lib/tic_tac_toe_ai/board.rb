@@ -20,8 +20,8 @@ module TicTacToe
        "+++++++++++++"
     end
 
-    def add_move(symbol, number)
-      @board[4] = symbol
+    def add_move(marker, number)
+      @board[4] = marker
     end
 
     # def choose_marker
