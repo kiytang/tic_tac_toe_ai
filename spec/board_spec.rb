@@ -51,6 +51,12 @@ module TicTacToe
 
     			expect(subject.winner).to eq "x"
     		end
+
+    		it "returns o for diagonal" do
+    			subject.add_move("o", 2)
+    			subject.add_move("o", 4)
+    			subject.add_move("o", 1)
+    		end
     	end
 
     	context "#when 'o' is the winner" do 
