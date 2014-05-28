@@ -24,6 +24,13 @@ module TicTacToe
     		expect(subject.board).to eq (["-","-","-",
     																	"-","x","-",
     																	"-","-","-"])
+    	end
+
+    	it "adds a nought to board" do
+    		subject.add_move("o", 8)
+    		expect(subject.board).to eq (["-","-","-",
+    																	"-","-","-",
+    																	"-","-","o"])
     	end 	
     end
 
@@ -46,7 +53,7 @@ module TicTacToe
     		end
     	end
 
-    	context "when 'o' is the winner" do 
+    	context "#when 'o' is the winner" do 
     		it "returns o for row" do
     			subject.add_move("o", 6)
     			subject.add_move("o", 7)
@@ -61,6 +68,12 @@ module TicTacToe
     			subject.add_move("o", 8)
 
     			expect(subject.winner).to eq "o"
+    		end
+
+    		it "returns o for diagonal" do
+    			subject.add_move("o", 0)
+    			subject.add_move("o", 4)
+    			subject.add_move("o", 8)	  			
     		end
     	end
     end
