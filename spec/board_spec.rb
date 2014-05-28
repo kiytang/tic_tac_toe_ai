@@ -6,7 +6,7 @@ module TicTacToe
     subject {Board.new}
 
     describe "display_board" do
-    	it "displays a board" do
+    	it "should display a board" do
     	  expect(subject.display_board).to eq(
     	   "+++++++++++++\n" +
        	 "| - | - | - |\n" +
@@ -19,14 +19,14 @@ module TicTacToe
     end  
 
     describe "add_move" do
-    	it "adds a cross to board" do
+    	it "should add a cross to board" do
     		subject.add_move("x", 4)
     		expect(subject.board).to eq (["-","-","-",
     																	"-","x","-",
     																	"-","-","-"])
     	end
 
-    	it "adds a nought to board" do
+    	it "should add a nought to board" do
     		subject.add_move("o", 8)
     		expect(subject.board).to eq (["-","-","-",
     																	"-","-","-",
@@ -36,7 +36,7 @@ module TicTacToe
 
     describe "winner" do #either 'x', 'o' draw or nil
     	context "#when 'x' is the winner" do 
-    		it "returns 'x' for 1st row win" do
+    		it "should return 'x' for 1st row win" do
     			subject.add_move("x", 0)
     			subject.add_move("x", 1)
     			subject.add_move("x", 2)
@@ -44,7 +44,7 @@ module TicTacToe
     			expect(subject.winner).to eq "x"
     		end
 
-    		it "returns 'x' for 2nd row win" do
+    		it "should return 'x' for 2nd row win" do
     			subject.add_move("x", 3)
     			subject.add_move("x", 4)
     			subject.add_move("x", 5)
@@ -52,7 +52,7 @@ module TicTacToe
     			expect(subject.winner).to eq "x"
     		end
 
-    		it "returns 'x' for 3rd row win" do
+    		it "should return 'x' for 3rd row win" do
     			subject.add_move("x", 6)
     			subject.add_move("x", 7)
     			subject.add_move("x", 8)
@@ -60,7 +60,7 @@ module TicTacToe
     			expect(subject.winner).to eq "x"
     		end
 
-    		it "returns 'x' for 1st column win" do
+    		it "should return 'x' for 1st column win" do
     			subject.add_move("x", 0)
     			subject.add_move("x", 3)
     			subject.add_move("x", 6)
@@ -68,7 +68,23 @@ module TicTacToe
     			expect(subject.winner).to eq "x"
     		end
 
-    		it "returns 'x' for forward diagonal win" do
+    		it "should return 'x' for 2nd column win" do
+    			subject.add_move("x", 1)
+    			subject.add_move("x", 4)
+    			subject.add_move("x", 7)
+
+    			expect(subject.winner).to eq "x"
+    		end 
+
+    		it "should return 'x' for 3rd column win" do
+    			subject.add_move("x", 2)
+    			subject.add_move("x", 5)
+    			subject.add_move("x", 8)
+
+    			expect(subject.winner).to eq "x"    			
+    		end
+
+    		it "should return 'x' for forward diagonal win" do
     			subject.add_move("x", 0)
     			subject.add_move("x", 4)
     			subject.add_move("x", 8)
@@ -76,7 +92,7 @@ module TicTacToe
     			expect(subject.winner).to eq "x"
     		end
 
-    		it "returns 'x' for backward diagonal win" do
+    		it "should return 'x' for backward diagonal win" do
     			subject.add_move("x", 2)
     			subject.add_move("x", 4)
     			subject.add_move("x", 6)
@@ -86,7 +102,13 @@ module TicTacToe
     	end
 
     	context "#when 'o' is the winner" do 
-    		it "returns 'o' for row wins" do
+    		it "should return 'o' for 1st row win" do
+    			subject.add_move("o", 0)
+    			subject.add_move("o", 1)
+    			subject.add_move("x", 2)
+    		end
+    				
+    		it "should return 'o' for 3rd row win" do
     			subject.add_move("o", 6)
     			subject.add_move("o", 7)
     			subject.add_move("o", 8)
@@ -94,7 +116,7 @@ module TicTacToe
     			expect(subject.winner).to eq "o"
     		end
 
-    		it "returns 'o' for column wins" do
+    		it "should return 'o' for column wins" do
     			subject.add_move("o", 2)
     			subject.add_move("o", 5)
     			subject.add_move("o", 8)
@@ -102,7 +124,7 @@ module TicTacToe
     			expect(subject.winner).to eq "o"
     		end
 
-    		it "returns 'o' for diagonal wins" do
+    		it "should return 'o' for diagonal wins" do
     			subject.add_move("o", 0)
     			subject.add_move("o", 4)
     			subject.add_move("o", 8)	  
@@ -113,7 +135,7 @@ module TicTacToe
     end
 
     describe "game_ended?" do
-    	xit "returns true false"
+    	xit "should return true false"
     	# based on if all cells filled?
     	# or there is a winner
     end
