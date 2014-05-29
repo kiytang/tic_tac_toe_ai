@@ -19,6 +19,15 @@ module TicTacToe
         expect(game.other_player).to eq cpu  
       end
     end
+
+    context "#switch_players" do
+      it "should set @current_player to @other_player" do
+        game = Game.new([kiy, cpu])
+        other_player = game.other_player
+        game.switch_players
+        expect(game.current_player). to eq other_player     
+      end
+    end
   end
 end
 
