@@ -46,6 +46,19 @@ module TicTacToe
       end
     end
 
+    def draw? #http://www.waywordradio.org/tic-tac-toe-cats-game/
+      # !winner && 
+      # @board.none? {|cell| cell == EMPTY }
+      @board.each do |cell|
+        if cell == EMPTY
+          return false
+        end
+      end
+      true
+      # puts "The game is a draw"
+    end
+
+
     private
 
     def o_indexes

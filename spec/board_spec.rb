@@ -105,7 +105,17 @@ module TicTacToe
     		it "should return 'o' for 1st row win" do
     			subject.add_move("o", 0)
     			subject.add_move("o", 1)
-    			subject.add_move("x", 2)
+    			subject.add_move("o", 2)
+
+    			expect(subject.winner).to eq "o"
+    		end
+
+    		it "should return 'o' for 2nd row win" do
+    			subject.add_move("o", 3)
+    			subject.add_move("o", 4)
+    			subject.add_move("o", 5)
+
+    			expect(subject.winner).to eq "o"
     		end
     				
     		it "should return 'o' for 3rd row win" do
@@ -116,31 +126,85 @@ module TicTacToe
     			expect(subject.winner).to eq "o"
     		end
 
-    		it "should return 'o' for column wins" do
-    			subject.add_move("o", 2)
-    			subject.add_move("o", 5)
-    			subject.add_move("o", 8)
+    		it "should return 'o' for 1st column win" do
+    			subject.add_move("o", 0)
+    			subject.add_move("o", 3)
+    			subject.add_move("o", 6)
 
     			expect(subject.winner).to eq "o"
     		end
 
-    		it "should return 'o' for diagonal wins" do
+    		it "should return 'o' for 2nd column win" do
+    			subject.add_move("o", 1)
+    			subject.add_move("o", 4)
+    			subject.add_move("o", 7)
+
+    			expect(subject.winner).to eq "o"
+    		end 
+
+    		it "should return 'x' for 3rd column win" do
+    			subject.add_move("o", 2)
+    			subject.add_move("o", 5)
+    			subject.add_move("o", 8)
+
+    			expect(subject.winner).to eq "o"    			
+    		end
+
+    		it "should return 'o' for forward diagonal win" do
     			subject.add_move("o", 0)
     			subject.add_move("o", 4)
     			subject.add_move("o", 8)	  
 
     			expect(subject.winner).to eq "o"			
     		end
-    	end
-    end
 
+    		it "should return 'o' for backward diagonal win" do
+    			subject.add_move("o", 2)
+    			subject.add_move("o", 4)
+    			subject.add_move("o", 6)
+
+    			expect(subject.winner).to eq "o"
+    		end
+    	end
+    
+    # filled board and expect test to pass
+    describe "draw?" do
+    	it "should return true if board is full " do
+    		subject.add_move("x", 0)
+    		subject.add_move("o", 1)
+    		subject.add_move("x", 2)
+    		subject.add_move("x", 3)
+    		subject.add_move("o", 4)
+    		subject.add_move("x", 5)
+    		subject.add_move("o", 6)
+    		subject.add_move("x", 7)
+    		subject.add_move("o", 8)		
+    		
+    		expect(subject.draw?).to eq true				
+    	end	
+
+    	it "should return false if board not full " do
+    		subject.add_move("x", 0)
+    		subject.add_move("o", 1)
+    		subject.add_move("x", 2)
+    		subject.add_move("x", 3)
+    		subject.add_move("o", 4)
+    		subject.add_move("x", 5)
+    		subject.add_move("o", 6)
+    		subject.add_move("x", 7)
+    			
+    		
+    		expect(subject.draw?).to eq false				
+    	end					
+    end		
+    
     describe "game_ended?" do
     	xit "should return true false"
     	# based on if all cells filled?
     	# or there is a winner
+
     end
-
-
   end
+end
 end
 
