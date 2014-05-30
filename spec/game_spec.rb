@@ -7,13 +7,13 @@ module TicTacToe
     let (:cpu) {Player.new({marker: "o", name: "cpu"})}
     
     context "#initialze" do
-      it "should randomly select a current player" do
+      xit "should randomly select a current player" do
         Array.any_instance.stub(:shuffle) {[kiy, cpu]}
         game = Game.new([kiy, cpu])
         expect(game.current_player).to eq kiy
       end
 
-      it "should randomly select another player" do
+      xit "should randomly select another player" do
         Array.any_instance.stub(:shuffle) {[kiy, cpu]}
         game = Game.new([kiy, cpu])
         expect(game.other_player).to eq cpu  
@@ -21,14 +21,14 @@ module TicTacToe
     end
 
     context "#switch_players" do
-      it "should set @current_player to @other_player" do
+      xit "should set @current_player to @other_player" do
         game = Game.new([kiy, cpu])
         other_player = game.other_player
         game.switch_players
         expect(game.current_player).to eq other_player     
       end
 
-      it "should set @other_player to @current_player " do
+      xit "should set @other_player to @current_player " do
         game = Game.new([kiy, cpu])
         current_player = game.current_player
         game.switch_players
