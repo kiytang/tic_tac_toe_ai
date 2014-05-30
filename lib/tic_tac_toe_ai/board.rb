@@ -44,6 +44,8 @@ module TicTacToe
 
         return "o" if win
       end
+
+      nil
     end
 
     def draw? #http://www.waywordradio.org/tic-tac-toe-cats-game/
@@ -58,6 +60,13 @@ module TicTacToe
       # puts "The game is a draw"
     end
 
+    def game_ended?
+      if winner || draw?
+        return true
+      end
+      false
+    end
+    
 
     private
 

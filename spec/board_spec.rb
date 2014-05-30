@@ -198,11 +198,26 @@ module TicTacToe
     	end					
     end		
     
+
     describe "game_ended?" do
-    	xit "should return true false"
+    	it "should return true false"
     	# based on if all cells filled?
     	# or there is a winner
+    	context "game started" do
+    		it "should not have ended" do
+    			expect(subject.game_ended?).to eq false		
+    		end
+    	end
 
+    	context "when 'x' has won" do
+    		it "should return true" do
+    			subject.add_move("x", 2)
+    			subject.add_move("x", 4)
+    			subject.add_move("x", 6)
+    			
+    			expect(subject.game_ended?).to eq true	
+    		end
+    	end
     end
   end
 end
