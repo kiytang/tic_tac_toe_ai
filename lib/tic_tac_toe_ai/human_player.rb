@@ -9,12 +9,12 @@ module TicTacToe
 
     def move
       puts @board.display_board
-      Cell.new(prompt_for_move)
+      prompt_for_move
     end
 
     def prompt_for_move
       print "To select your move, please enter a number between 0 to 8: "
-      return gets.chomp.to_i
+      return Cell.new(gets.chomp.to_i)
     end
 
     def reprompt

@@ -7,20 +7,23 @@ EMPTY = "-"
     def initialize(board = Board.new)
       @board  = board
       @player = players
+      reset_players(board)
+    end
+
+    def reset_players(board)
+      @players = [HumanPlayer.new("x", board),
+                    ComputerPlayer.new("o", board)]
       players.shuffle!
     end
 
-    def players
-      @players ||= [HumanPlayer.new("x", board),
-                    ComputerPlayer.new("o", board)]
-    end
 
     def start_game
       print instructions
-      puts "#{players.first.name} has been randomly been selected as the 1st player with assigned marker #{players.first.marker}"
-      play_game
-      outcome
-      play_again?
+      begin
+        puts "#{players.first.name} has been randomly been selected as the 1st player with assigned marker #{players.first.marker}"
+        play_game
+        outcome
+      end while play_again?
     end
 
     def play_game 
@@ -35,17 +38,23 @@ EMPTY = "-"
           if board.game_ended?
             puts board.display_board
             puts "GAME ENDED"
+            return
           end
         end
       end
     end
 
     def get_move(player)
-      number = player.move.index
-      if valid_move?(number)
-        number
+      index = player.move.index
+      reprompt_if_invalid(player, index)
+    end
+
+    def reprompt_if_invalid(player, index)
+      if valid_move?(index)
+        index
       else
-        player.reprompt
+        new_move = player.reprompt
+        reprompt_if_invalid(player, new_move.index)
       end
     end
 
@@ -66,6 +75,7 @@ EMPTY = "-"
       print "To play again, please enter Y or N (Y or N): "
       if STDIN.gets.chomp =~ /Y|y/
         @board = Board.new
+        reset_players(board)
         return true
       end
       false
