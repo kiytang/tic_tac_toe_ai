@@ -1,13 +1,14 @@
 module TicTacToe
   class HumanPlayer < Player
 
-    def initialize(marker)
+    def initialize(marker, board)
       @marker = marker
       @name   = "Human"
+      @board = board
     end
 
-    def move(board)
-      puts board.display_board
+    def move
+      puts @board.display_board
       prompt_for_move
     end
 
@@ -16,9 +17,9 @@ module TicTacToe
       return gets.chomp.to_i
     end
 
-    def reprompt(board)
+    def reprompt
       puts "Number has to be between 0 and 8, Please re-enter"
-      puts board.display_board
+      puts @board.display_board
       return prompt_for_move
     end
 

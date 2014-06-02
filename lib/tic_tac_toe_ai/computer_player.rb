@@ -1,14 +1,14 @@
 module TicTacToe
   class ComputerPlayer < Player
 
-    def initialize(maker, board)
+    def initialize(marker, board)
       @marker = marker
       @name   = "Computer"
       @board  = board
     end
 
     def move
-      get_cpu_move
+      Cell.new(get_cpu_move)
     end
     
     #CPU moves to center block 1st if not
@@ -31,20 +31,26 @@ module TicTacToe
     end
 
     def ai_move
+
+      #Attempt winning move
+      pick = winning_cell_for_marker(@marker)
+
+      #Block opponent
+      pick ||= winning_cell_for_marker(player.marker)
+
+      # pick ||= next_strategy
+
+      return pick
+
+    end
+
+    def winning_cell_for_marker(marker)
       @board.winning_combinations.each do |combo|
-        if consecutive_markers(combo, computer.marker) == 2
-        puts outstanding_winning_cell(row)
+        if consecutive_markers(combo, marker) == 2
+          puts outstanding_winning_cell(row)
           return outstanding_winning_cell(row)
         end
       end
-
-      #Block opponent
-      @board.winning_combinations.each do |combo|
-        if consecutive_markers(combo, player.marker) == 2
-            puts outstanding_winning_cell(combo)  
-          return outstanding_winning_cell(combo)
-        end
-      end  
     end
 
     #First, check if we can win in the next move

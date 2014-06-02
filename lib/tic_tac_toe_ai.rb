@@ -1,5 +1,6 @@
 require_relative "tic_tac_toe_ai/version"
 require_relative "tic_tac_toe_ai/game"
+require_relative "tic_tac_toe_ai/cell"
 require_relative "tic_tac_toe_ai/player"
 require_relative "tic_tac_toe_ai/computer_player"
 require_relative "tic_tac_toe_ai/human_player"
