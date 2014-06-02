@@ -43,6 +43,7 @@ module TicTacToe
 
       pick ||= random_corner
       # pick ||= next_strategy
+      pick ||= random_side
 
       return pick
 
@@ -52,6 +53,9 @@ module TicTacToe
       Cell::CORNERS.select{|index| @board.empty?(index)}.sample
     end
 
+    def random_side
+      Cell::SIDES.select{|index| @board.empty?(index)}.sample
+    end
     def winning_cell_for_marker(marker)
       @board.winning_combinations.each do |combo|
         if consecutive_markers(combo, marker) == 2
