@@ -30,7 +30,7 @@ EMPTY = "-"
         players.each do |player| 
           puts
           puts "Player: #{player.name}'s turn"
-          board.add_move(player.marker, player.move)
+          board.add_move(player.marker, get_move)
 
           if board.game_ended?
             puts board.display_board
@@ -39,8 +39,19 @@ EMPTY = "-"
         end
       end
     end
-   # board has ended, who won?
 
+    def get_move
+      number = player.move
+      if valid_move?(number)
+        number
+      else
+        player.reprompt
+      end
+    end
+
+    def valid_move?(number)
+      number.between?(0,8) && board.board[number] == EMPTY
+    end
     
     def outcome
       if board.winner
