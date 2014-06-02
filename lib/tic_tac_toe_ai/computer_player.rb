@@ -9,7 +9,7 @@ module TicTacToe
     end
 
     def move
-      Cell.new(get_cpu_move)
+      Cell.new(ai_move)
     end
     
     private
@@ -20,17 +20,6 @@ module TicTacToe
       if @board.board[4] == Board::EMPTY
         return 4
       end
-    end
-
-    def get_cpu_move
-      return center_move if center_move
-      # puts ai_move
-      return ai_move   
-      # @board.board.each_with_index do |cell, idx|
-      #   if cell == Board::EMPTY
-      #     return idx
-      #   end
-      # end
     end
 
     def ai_move
@@ -67,27 +56,28 @@ module TicTacToe
     def opponent_in(index)
       @board.board[index] == @opponent_marker
     end
+
+    # [x,-,x] not consecutive
+    # find index of dash in any line where there are two of 'marker' and one dash
     def winning_cell_for_marker(marker)
-      @board.winning_combinations.each do |combo|
-        if consecutive_markers(combo, marker) == 2
-          puts outstanding_winning_cell(row)
-          return outstanding_winning_cell(row)
+      @board.winning_combinations.each do |line|
+        if total_markers(line, marker) == 2 && line_has_empty?(line)
+          return outstanding_winning_cell(line)
         end
       end
       return nil
     end
 
-    #First, check if we can win in the next move
-    def consecutive_markers(combo, marker)
+    def total_markers(line, marker)
       total = 0
-      combo.each do |cell|
-        total +=1 if @board.board[cell] == marker
-        unless @board.board[cell] == marker || 
-        @board.board[cell] == Board::EMPTY
-          return 0
-        end
+      line.each do |cell|
+        total += 1 if @board.board[cell] == marker
       end
       total
+    end
+
+    def line_has_empty?(line)
+      line.any?{|cell| @board.board[cell] == Board::EMPTY }
     end
 
     def outstanding_winning_cell(combo)

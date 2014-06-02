@@ -9,7 +9,7 @@ module TicTacToe
 
     def move
       puts @board.display_board
-      prompt_for_move
+      Cell.new(prompt_for_move)
     end
 
     def prompt_for_move

@@ -25,6 +25,19 @@ module TicTacToe
       Array.any_instance.stub(:sample).and_return{|a| a.first}
       expect(computer.move.index == 0).to be_false
     end
+
+    it "goes for winning moves" do
+      board.add_move("o", 0)
+      board.add_move("o", 4)
+      expect(computer.move.index).to eq 8
+    end
+
+  	it "blocks opponents winning moves" do
+      board.add_move("x", 0)
+      board.add_move("x", 4)
+      expect(computer.move.index).to eq 8
+
+  	end
   end
 
 end

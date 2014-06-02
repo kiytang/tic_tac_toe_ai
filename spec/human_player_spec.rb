@@ -2,6 +2,13 @@ require "spec_helper"
 module TicTacToe
   describe HumanPlayer do
 
+    let(:board){Board.new}
+    let(:human){HumanPlayer.new("x", board)}
+
+    it "returns a valid move" do
+      expect(human.move).to be_a Cell
+    end
+
     context "#marker" do
       it "returns the marker" do
         player = HumanPlayer.new('x', nil)

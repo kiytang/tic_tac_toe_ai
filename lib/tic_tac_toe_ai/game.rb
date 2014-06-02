@@ -41,7 +41,7 @@ EMPTY = "-"
     end
 
     def get_move(player)
-      number = player.move
+      number = player.move.index
       if valid_move?(number)
         number
       else
@@ -49,8 +49,8 @@ EMPTY = "-"
       end
     end
 
-    def valid_move?(number)
-      number.between?(0,8) && board.empty?(index)
+    def valid_move?(index)
+      index.between?(0,8) && board.empty?(index)
     end
     
     def outcome
