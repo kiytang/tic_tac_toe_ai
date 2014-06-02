@@ -1,43 +1,41 @@
 module TicTacToe
+EMPTY = "-"
 
   class Game
-    attr_reader :board, :players, :current_player, :other_player
+    attr_reader :board, :players
 
     def initialize(board = Board.new)
       @board  = board
       @player = players
-      @current_player, @other_player = players.shuffle!
+      players.shuffle!
     end
 
     def players
-      @players ||= [Player.new(marker: "x", name: "bob"),
-                    Player.new(marker: "o", name: "fred")]
-    end
-
-    def switch_players
-      @current_player, @other_player = @other_player, @current_player 
+      @players ||= [Player.new(marker: "x", name: "Human"),
+                    Computer.new(marker: "o", name: "Computer", board: board)]
     end
 
     def start_game
       print instructions
-      puts "#{current_player.name} has randomly been selected as the 1st player"
+      puts "#{players.first.name} has been randomly been selected as the 1st player with assigned marker #{players.first.marker}"
       play_game
       outcome
+      play_again?
     end
 
-    def play_game  
-      #need to select human or computer player
+    def play_game 
+      puts
       puts board.display_board
       while true
-        # convert to loop till board ends
         players.each do |player| 
-          puts "Player #{player.marker}'s turn"
-          number = gets.to_i
-          board.add_move(player.marker, number)
-          puts board.display_board
-          #board ended? if so quit loop
-          # break if board.game_ended?
-          if board.game_ended?
+          puts
+          puts "Player: #{player.name}'s turn"
+          if player.human?
+            puts human_move
+          elsif
+            board.add_move(player.marker, player.cpu_move)
+            puts board.display_board
+          else board.game_ended?
             puts "GAME ENDED"
             return nil
           end
@@ -45,38 +43,40 @@ module TicTacToe
       end
     end
    # board has ended, who won?
-    def outcome
-      if board.draw?
-        puts "Its a Draw"
-      else
-        puts "#{board.winner} is the winner"
-      end
-    end
 
-# then next have human player enter console value.
     def human_move
-      print "Please enter your selction between 0 and 8"
-      selection = gets.chomp.to_i
-      #want to check that number lies between 0 and 8
-      until available_move?(index)
-       puts "Invalid move, please try again."
-       display_board
-       human_move
+      print "To select your move, please enter a number between 0 to 8: "
+      number = gets.chomp.to_i
+      if check_input(number)
+        board.add_move(player.marker, number)
+        # puts board.display_board   
+      else
+        puts "Number has to be between 0 and 8, Please re-enter"
+        puts display_board
+        human_move
       end
     end
 
-    def available_move?(move)
-      if move.between?(0..8) && @board.board[index] == EMPTY
+    #need to check how I can also incorpate this check strategy with CPU
+    def check_input(number)
+      if number.between?(0,8) && board.board[number] == EMPTY
         true
       else
         false
       end
     end
+    
+    def outcome
+      if board.winner
+        puts "#{board.winner} is the winner"
+      else
+          puts "Its a Draw"
+      end
+    end
 
-# computer returns random value
 
     def play_again?
-      print "Play Again? (Y or N): "
+      print "To play again, please enter Y or N (Y or N): "
       if STDIN.gets.chomp =~ /Y|y/
         @board = Board.new
         return true
@@ -87,7 +87,11 @@ module TicTacToe
     private
 
     def instructions
-      puts "Welcome to Tic-Tac_Toe\n Best of luck in competing against Ruby."
+      puts
+      puts "***********************"
+      puts "Welcome to Tic-Tac-Toe"
+      puts "***********************"
+      puts "Best of luck in competing against our computer."
     end
   end
 end
