@@ -8,8 +8,5 @@ module TicTacToe
       @name   = input.fetch(:name)  
     end
 
-    def human?
-      true
-    end
   end
 end   

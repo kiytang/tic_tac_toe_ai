@@ -1,11 +1,11 @@
 module TicTacToe
-  class Computer
+  class ComputerPlayer < Player
     attr_reader :board, :marker, :name
 
-    def initialize(input)
-      @marker = input.fetch(:marker)
-      @name   = input.fetch(:name)
-      @board  = input.fetch(:board)
+    def initialize(options)
+      @marker = options.fetch(:marker)
+      @name   = options.fetch(:name)
+      @board  = options.fetch(:board)
     end
     
     #CPU moves to center block 1st if not
@@ -14,10 +14,6 @@ module TicTacToe
       if @board.board[4] == Board::EMPTY
         return 4
       end
-    end
-
-    def human?
-      false
     end
 
     def cpu_move
