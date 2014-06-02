@@ -5,12 +5,15 @@ module TicTacToe
       @marker = marker
       @name   = "Computer"
       @board  = board
+      @opponent_marker  = (marker=="x")? "o" : "x"
     end
 
     def move
       Cell.new(get_cpu_move)
     end
     
+    private
+
     #CPU moves to center block 1st if not
     #available it the goes to ai_ove
     def center_move
@@ -22,7 +25,7 @@ module TicTacToe
     def get_cpu_move
       return center_move if center_move
       # puts ai_move
-      return ai_move      
+      return ai_move   
       # @board.board.each_with_index do |cell, idx|
       #   if cell == Board::EMPTY
       #     return idx
@@ -36,12 +39,17 @@ module TicTacToe
       pick = winning_cell_for_marker(@marker)
 
       #Block opponent
-      pick ||= winning_cell_for_marker(player.marker)
+      pick ||= winning_cell_for_marker(@opponent_marker)
 
+      pick ||= random_corner
       # pick ||= next_strategy
 
       return pick
 
+    end
+
+    def random_corner
+      Cell::CORNERS.sample
     end
 
     def winning_cell_for_marker(marker)
@@ -51,6 +59,7 @@ module TicTacToe
           return outstanding_winning_cell(row)
         end
       end
+      return nil
     end
 
     #First, check if we can win in the next move

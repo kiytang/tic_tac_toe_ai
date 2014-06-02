@@ -10,9 +10,9 @@ module TicTacToe
       end
     end
 
-    context "#centre?" do
-      it "returns true if centre cell" do
-        expect(Cell.new(4).centre?).to be_true
+    context "#center?" do
+      it "returns true if center cell" do
+        expect(Cell.new(4).center?).to be_true
       end
     end
   end

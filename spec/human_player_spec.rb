@@ -4,14 +4,14 @@ module TicTacToe
 
     context "#marker" do
       it "returns the marker" do
-        player = HumanPlayer.new('x')
+        player = HumanPlayer.new('x', nil)
         expect(player.marker).to eq "x"
       end
     end
 
     context "#players_name" do
       it "returns the player's name" do
-        player = HumanPlayer.new("x")
+        player = HumanPlayer.new("x", nil)
         expect(player.name).to eq "Human"
       end
     end
