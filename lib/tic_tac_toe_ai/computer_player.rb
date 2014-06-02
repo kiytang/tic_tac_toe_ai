@@ -1,11 +1,14 @@
 module TicTacToe
   class ComputerPlayer < Player
-    attr_reader :board, :marker, :name
 
-    def initialize(options)
-      @marker = options.fetch(:marker)
-      @name   = options.fetch(:name)
-      @board  = options.fetch(:board)
+    def initialize(maker, board)
+      @marker = marker
+      @name   = "Computer"
+      @board  = board
+    end
+
+    def move
+      get_cpu_move
     end
     
     #CPU moves to center block 1st if not
@@ -16,7 +19,7 @@ module TicTacToe
       end
     end
 
-    def cpu_move
+    def get_cpu_move
       return center_move if center_move
       # puts ai_move
       return ai_move      
@@ -48,8 +51,8 @@ module TicTacToe
     def consecutive_markers(combo, marker)
       total = 0
       combo.each do |cell|
-        total +=1 if board.board[cell] == marker
-        unless board.board[cell] == marker || 
+        total +=1 if @board.board[cell] == marker
+        unless @board.board[cell] == marker || 
         @board.board[cell] == Board::EMPTY
           return 0
         end

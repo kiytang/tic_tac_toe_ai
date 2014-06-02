@@ -11,8 +11,8 @@ EMPTY = "-"
     end
 
     def players
-      @players ||= [Player.new(marker: "x", name: "Human"),
-                    Computer.new(marker: "o", name: "Computer", board: board)]
+      @players ||= [HumanPlayer.new("x", board),
+                    ComputerPlayer.new("o", board)]
     end
 
     def start_game
@@ -30,41 +30,17 @@ EMPTY = "-"
         players.each do |player| 
           puts
           puts "Player: #{player.name}'s turn"
-          if player.human?
-            puts human_move
-          elsif
-            board.add_move(player.marker, player.cpu_move)
+          board.add_move(player.marker, player.move)
+
+          if board.game_ended?
             puts board.display_board
-          else board.game_ended?
             puts "GAME ENDED"
-            return nil
           end
         end
       end
     end
    # board has ended, who won?
 
-    def human_move
-      print "To select your move, please enter a number between 0 to 8: "
-      number = gets.chomp.to_i
-      if check_input(number)
-        board.add_move(player.marker, number)
-        # puts board.display_board   
-      else
-        puts "Number has to be between 0 and 8, Please re-enter"
-        puts display_board
-        human_move
-      end
-    end
-
-    #need to check how I can also incorpate this check strategy with CPU
-    def check_input(number)
-      if number.between?(0,8) && board.board[number] == EMPTY
-        true
-      else
-        false
-      end
-    end
     
     def outcome
       if board.winner
