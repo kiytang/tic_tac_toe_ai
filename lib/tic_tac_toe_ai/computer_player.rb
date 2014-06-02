@@ -34,19 +34,20 @@ module TicTacToe
     end
 
     def ai_move
+      pick = center_move
 
       #Attempt winning move
-      pick = winning_cell_for_marker(@marker)
+      pick ||= winning_cell_for_marker(@marker)
 
       #Block opponent
       pick ||= winning_cell_for_marker(@opponent_marker)
 
+      pick ||= avoid_opposite_fork
       pick ||= random_corner
       # pick ||= next_strategy
       pick ||= random_side
 
       return pick
-
     end
 
     def random_corner
@@ -55,6 +56,16 @@ module TicTacToe
 
     def random_side
       Cell::SIDES.select{|index| @board.empty?(index)}.sample
+    end
+
+    def avoid_opposite_fork
+      if (opponent_in(2) && opponent_in(6)) || (opponent_in(0) && opponent_in(8))
+        random_side
+      end
+    end
+
+    def opponent_in(index)
+      @board.board[index] == @opponent_marker
     end
     def winning_cell_for_marker(marker)
       @board.winning_combinations.each do |combo|
