@@ -5,6 +5,16 @@ module TicTacToe
 
     subject {Board.new}
 
+    describe "empty?" do
+        it "returns true when empty" do
+            expect(subject.empty?(0)).to be_true
+        end
+        it "returns false when cell occupied" do
+            subject.add_move("x", 0)
+            expect(subject.empty?(0)).to be_false
+        end
+    end
+
     describe "display_board" do
     	it "should display a board" do
     	  expect(subject.display_board).to eq(

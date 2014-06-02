@@ -49,7 +49,7 @@ module TicTacToe
     end
 
     def random_corner
-      Cell::CORNERS.sample
+      Cell::CORNERS.select{|index| @board.empty?(index)}.sample
     end
 
     def winning_cell_for_marker(marker)

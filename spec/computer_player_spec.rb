@@ -19,7 +19,12 @@ module TicTacToe
       expect(computer.move.corner?).to be_true
     end
       
-    
+    xit "doesn't try to play in a corner which is taken" do
+      board.add_move("o", 4)
+      board.add_move("x", 0)
+      Array.any_instance.stub(:sample).and_return{|a| a.first}
+      expect(computer.move.index == 0).to be_false
+    end
   end
 
 end

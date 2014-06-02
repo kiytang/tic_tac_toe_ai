@@ -20,6 +20,10 @@ module TicTacToe
        "+++++++++++++"
     end
 
+    def empty?(index)
+      board[index] == EMPTY
+    end
+
     def add_move(marker, number)
       @board[number] = marker
     end

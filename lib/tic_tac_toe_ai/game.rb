@@ -50,7 +50,7 @@ EMPTY = "-"
     end
 
     def valid_move?(number)
-      number.between?(0,8) && board.board[number] == EMPTY
+      number.between?(0,8) && board.empty?(index)
     end
     
     def outcome
