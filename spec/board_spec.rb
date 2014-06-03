@@ -201,7 +201,18 @@ module TicTacToe
         end
         # based on if all cells filled?
     	# or there is a winner
-    	
+    	it "should return true if game is a draw" do
+            subject.add_move("x", 0)
+            subject.add_move("o", 1)
+            subject.add_move("x", 2)
+            subject.add_move("x", 3)
+            subject.add_move("o", 4)
+            subject.add_move("x", 5)
+            subject.add_move("o", 6)
+            subject.add_move("x", 7)
+            subject.add_move("o", 8)        
+            expect(subject.game_ended?).to eq true
+        end
 
     	context "game started" do
     		it "should not have ended" do
