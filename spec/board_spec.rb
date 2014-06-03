@@ -16,9 +16,9 @@ module TicTacToe
       end
     end
 
-    describe "display_board" do
+    describe "to_s" do
     	it "should display a board" do
-    	  expect(subject.display_board).to eq(
+    	  expect(subject.to_s).to eq(
     	 "+++++++++++++\n" +
        	 "| - | - | - |\n" +
        	 "_____________\n" +

@@ -7,10 +7,10 @@ module TicTacToe
     let (:cpu) {Player.new({marker: "o", name: "cpu"})}
     
     context "#initialze" do
-      xit "should randomly select a current player" do
-        Array.any_instance.stub(:shuffle) {[kiy, cpu]}
-        game = Game.new([kiy, cpu])
-        expect(game.current_player).to eq kiy
+      it "should randomly select a current player" do
+        game = Game.new
+        Array.any_instance.should_receive(:shuffle)
+        game.reset_players(nil)
       end
 
       xit "should randomly select another player" do

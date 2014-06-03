@@ -10,7 +10,7 @@ module TicTacToe
                               [0,4,8],[2,4,6]]          #diagonals  
     end
 
-    def display_board
+    def to_s
        "+++++++++++++\n"+
        "| #{@board[0]} | #{@board[1]} | #{@board[2]} |\n" +
        "_____________\n" +

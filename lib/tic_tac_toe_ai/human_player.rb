@@ -8,7 +8,7 @@ module TicTacToe
     end
 
     def move
-      puts @board.display_board
+      puts @board
       prompt_for_move
     end
 
@@ -18,16 +18,9 @@ module TicTacToe
 
     def reprompt
       puts "Please re-enter, number must lie between 0 and 8 and not already taken"
-      puts @board.display_board
+      puts @board
       return prompt_for_move
     end
 
-  end
-
-  class Prompter
-    def self.get_move
-      print "To select your move, please enter a number between 0 to 8: "
-      gets.chomp.to_i
-    end
   end
 end
