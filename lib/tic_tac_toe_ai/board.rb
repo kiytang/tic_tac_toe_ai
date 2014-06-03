@@ -1,10 +1,10 @@
 module TicTacToe
   class Board
-    EMPTY = "-"
+    EMPTY_CELL = "-"
     attr_reader :board, :winning_combinations
 
     def initialize
-      @board = [EMPTY] * 9
+      @board = [EMPTY_CELL] * 9
       @winning_combinations = [[0,1,2],[3,4,5],[6,7,8], #rows
                               [0,3,6],[1,4,7],[2,5,8],  #columns
                               [0,4,8],[2,4,6]]          #diagonals  
@@ -21,7 +21,7 @@ module TicTacToe
     end
 
     def empty?(index)
-      board[index] == EMPTY
+      board[index] == EMPTY_CELL
     end
 
     def add_move(marker, number)
@@ -48,15 +48,14 @@ module TicTacToe
 
         return "o" if win
       end
-
       nil
     end
 
     def draw? #http://www.waywordradio.org/tic-tac-toe-cats-game/
       # !winner && 
-      # @board.none? {|cell| cell == EMPTY }
+      # @board.none? {|cell| cell == EMPTY_CELL }
       @board.each do |cell|
-        if cell == EMPTY
+        if cell == EMPTY_CELL
           return false
         end
       end
