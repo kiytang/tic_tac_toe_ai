@@ -4,7 +4,7 @@ module TicTacToe
     def initialize(marker, board)
       @marker = marker
       @name   = "Human"
-      @board = board
+      @board  = board
     end
 
     def move
@@ -18,7 +18,7 @@ module TicTacToe
     end
 
     def reprompt
-      puts "Number has to be between 0 and 8, Please re-enter"
+      puts "Number has to be between 0 and 8 and not already taken, please re-enter"
       puts @board.display_board
       return prompt_for_move
     end

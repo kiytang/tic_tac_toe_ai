@@ -18,7 +18,8 @@ module TicTacToe
       board.add_move("x", 4)
       expect(computer.move.corner?).to be_true
     end
-      
+    
+    #Conducted various scenarios, but was still unable to complete.   
     xit "doesn't try to play in a corner which is taken" do
       board.add_move("o", 4)
       board.add_move("x", 0)
