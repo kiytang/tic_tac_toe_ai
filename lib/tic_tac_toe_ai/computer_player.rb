@@ -30,7 +30,7 @@ module TicTacToe
       pick ||= avoid_fork_scenario_5
       pick ||= avoid_fork_scenario_6
       pick ||= avoid_fork_scenario_7
-      # pick ||= avoid_fork_scenario_8
+      pick ||= avoid_fork_scenario_8
       # pick ||= avoid_fork_scenario_9
       # pick ||= avoid_fork_scenario_10
       
@@ -90,6 +90,12 @@ module TicTacToe
     def avoid_fork_scenario_7
       if (opponent_in(3) && opponent_in(7))
         return 6
+      end
+    end
+
+    def avoid_fork_scenario_8
+      if (opponent_in(5) && opponent_in(7))
+        return 8
       end
     end
 
