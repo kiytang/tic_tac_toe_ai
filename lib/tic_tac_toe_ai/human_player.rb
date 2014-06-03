@@ -18,7 +18,7 @@ module TicTacToe
     end
 
     def reprompt
-      puts "Number has to be between 0 and 8 and not already taken, please re-enter"
+      puts "Please re-enter, number must lie between 0 and 8 and not already taken"
       puts @board.display_board
       return prompt_for_move
     end

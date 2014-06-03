@@ -23,11 +23,6 @@ module TicTacToe
         expect(player.name).to eq "Human"
       end
     end
-
-    # it "returns a valid move" do
-      
-
-
   end
 end
 

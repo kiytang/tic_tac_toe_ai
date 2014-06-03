@@ -50,26 +50,21 @@ EMPTY = "-"
     end
 
     def reprompt_if_invalid(player, index)
-      if valid_move?(index)
+      if board.valid_move?(index)
         index
       else
         new_move = player.reprompt
         reprompt_if_invalid(player, new_move.index)
       end
     end
-
-    def valid_move?(index)
-      index.between?(0,8) && board.empty?(index)
-    end
     
     def outcome
       if board.winner
         puts "#{board.winner} is the winner"
       else
-          puts "Its a Draw"
+          puts "Game is a Draw"
       end
     end
-
 
     def play_again?
       print "To play again, please enter Y or N (Y or N): "
@@ -86,7 +81,7 @@ EMPTY = "-"
     def instructions
       puts
       puts "***********************"
-      puts "Welcome to Tic-Tac-Toe"
+      puts "Welcome to Tic-Tac-Toe "
       puts "***********************"
       puts "Best of luck in competing against our computer."
     end

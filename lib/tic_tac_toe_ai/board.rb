@@ -24,6 +24,14 @@ module TicTacToe
       board[index] == EMPTY_CELL
     end
 
+    def valid_move?(index)
+      index.between?(0,8) && empty?(index)
+    end
+
+    def select_valid_cells(indicies)
+      indicies.select{|index| empty?(index) }
+    end
+
     def add_move(marker, number)
       @board[number] = marker
     end
