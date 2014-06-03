@@ -88,6 +88,14 @@ module TicTacToe
       expect(computer.move.index).to eq 0
     end
 
+     it "should avoid_fork_scenario_10" do
+      board.add_move("x", 1)
+      board.add_move("o", 4)
+      board.add_move("x", 5)
+      expect(computer.move.index).to eq 2
+    end
+
+
    
 
 
