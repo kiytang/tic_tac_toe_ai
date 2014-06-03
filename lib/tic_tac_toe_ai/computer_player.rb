@@ -25,8 +25,8 @@ module TicTacToe
 
       pick ||= avoid_opposite_fork
 
-      # pick ||= avoid_fork_scenario_3
-      # pick ||= avoid_fork_scenario_4
+      pick ||= avoid_fork_scenario_3
+      pick ||= avoid_fork_scenario_4
       # pick ||= avoid_fork_scenario_5
       # pick ||= avoid_fork_scenario_6
       # pick ||= avoid_fork_scenario_7
@@ -63,53 +63,18 @@ module TicTacToe
       end
     end
 
-    # def avoid_fork_scenario_3
-    #   if (opponent_in(5) && opponent_in(6)) 
-    #     return 7 #|| 8
-    #   end
-    # end
+    def avoid_fork_scenario_3
+      if (opponent_in(5) && opponent_in(6)) 
+        return 7 #|| 8
+      end
+    end
 
-    # def avoid_fork_scenario_4
-    #   if (opponent_in(0) && opponent_in(6))
-    #     return 1 #|| 2
-    #   end
-    # end
+    def avoid_fork_scenario_4
+      if (opponent_in(0) && opponent_in(5))
+        return 1 #|| 2
+      end
+    end
 
-    # def avoid_fork_scenario_5
-    #   if (opponent_in(3) && opponent_in(8)) 
-    #     return 6 #|| 7
-    #   end
-    # end
-
-    # def avoid_fork_scenario_6
-    #   if (opponent_in(3) && opponent_in(4))
-    #     return 0 #|| 1
-    #   end
-    # end
-
-    # def avoid_fork_scenario_7
-    #   if (opponent_in(3) && opponent_in(7))
-    #     return 7
-    #   end
-    # end
-
-    # def avoid_fork_scenario_8
-    #   if (opponent_in(5) && opponent_in(7))
-    #     return 9
-    #   end
-    # end
-
-    # def avoid_fork_scenario_9
-    #   if (opponent_in(1) && opponent_in(3))
-    #     return 0
-    #   end
-    # end
-
-    # def avoid_fork_scenario_10
-    #   if (opponent_in(1) && opponent_in(5))
-    #     return 2
-    #   end
-    # end
 
     def opponent_in(index)
       @board.board[index] == @opponent_marker
