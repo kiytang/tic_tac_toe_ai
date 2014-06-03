@@ -29,7 +29,7 @@ module TicTacToe
       pick ||= avoid_fork_scenario_4
       pick ||= avoid_fork_scenario_5
       pick ||= avoid_fork_scenario_6
-      # pick ||= avoid_fork_scenario_7
+      pick ||= avoid_fork_scenario_7
       # pick ||= avoid_fork_scenario_8
       # pick ||= avoid_fork_scenario_9
       # pick ||= avoid_fork_scenario_10
