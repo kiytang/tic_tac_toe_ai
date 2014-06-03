@@ -87,6 +87,12 @@ module TicTacToe
       end
     end
 
+    def avoid_fork_scenario_7
+      if (opponent_in(3) && opponent_in(7))
+        return 6
+      end
+    end
+
 
     def opponent_in(index)
       @board.board[index] == @opponent_marker
