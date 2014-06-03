@@ -7,8 +7,9 @@ module TicTacToe
 
     describe "empty?" do
         it "returns true when empty" do
-            expect(subject.empty?(0)).to be_true
+        expect(subject.empty?(0)).to be_true
         end
+        
         it "returns false when cell occupied" do
             subject.add_move("x", 0)
             expect(subject.empty?(0)).to be_false
@@ -18,7 +19,7 @@ module TicTacToe
     describe "display_board" do
     	it "should display a board" do
     	  expect(subject.display_board).to eq(
-    	   "+++++++++++++\n" +
+    	 "+++++++++++++\n" +
        	 "| - | - | - |\n" +
        	 "_____________\n" +
          "| - | - | - |\n" +
@@ -32,15 +33,15 @@ module TicTacToe
     	it "should add a cross to board" do
     		subject.add_move("x", 4)
     		expect(subject.board).to eq (["-","-","-",
-    																	"-","x","-",
-    																	"-","-","-"])
+										  "-","x","-",
+										  "-","-","-"])
     	end
 
     	it "should add a nought to board" do
     		subject.add_move("o", 8)
     		expect(subject.board).to eq (["-","-","-",
-    																	"-","-","-",
-    																	"-","-","o"])
+    									  "-","-","-",
+    									  "-","-","o"])
     	end 	
     end
 
@@ -50,15 +51,13 @@ module TicTacToe
     			subject.add_move("x", 0)
     			subject.add_move("x", 1)
     			subject.add_move("x", 2)
-
-    			expect(subject.winner).to eq "x"
+                expect(subject.winner).to eq "x"
     		end
 
     		it "should return 'x' for 2nd row win" do
     			subject.add_move("x", 3)
     			subject.add_move("x", 4)
     			subject.add_move("x", 5)
-
     			expect(subject.winner).to eq "x"
     		end
 
@@ -66,7 +65,6 @@ module TicTacToe
     			subject.add_move("x", 6)
     			subject.add_move("x", 7)
     			subject.add_move("x", 8)
-
     			expect(subject.winner).to eq "x"
     		end
 
@@ -74,7 +72,6 @@ module TicTacToe
     			subject.add_move("x", 0)
     			subject.add_move("x", 3)
     			subject.add_move("x", 6)
-
     			expect(subject.winner).to eq "x"
     		end
 
@@ -82,7 +79,6 @@ module TicTacToe
     			subject.add_move("x", 1)
     			subject.add_move("x", 4)
     			subject.add_move("x", 7)
-
     			expect(subject.winner).to eq "x"
     		end 
 
@@ -90,7 +86,6 @@ module TicTacToe
     			subject.add_move("x", 2)
     			subject.add_move("x", 5)
     			subject.add_move("x", 8)
-
     			expect(subject.winner).to eq "x"    			
     		end
 
@@ -98,7 +93,6 @@ module TicTacToe
     			subject.add_move("x", 0)
     			subject.add_move("x", 4)
     			subject.add_move("x", 8)
-
     			expect(subject.winner).to eq "x"
     		end
 
@@ -106,7 +100,6 @@ module TicTacToe
     			subject.add_move("x", 2)
     			subject.add_move("x", 4)
     			subject.add_move("x", 6)
-
     			expect(subject.winner).to eq "x"
     		end
     	end
@@ -116,7 +109,6 @@ module TicTacToe
     			subject.add_move("o", 0)
     			subject.add_move("o", 1)
     			subject.add_move("o", 2)
-
     			expect(subject.winner).to eq "o"
     		end
 
@@ -124,7 +116,6 @@ module TicTacToe
     			subject.add_move("o", 3)
     			subject.add_move("o", 4)
     			subject.add_move("o", 5)
-
     			expect(subject.winner).to eq "o"
     		end
     				
@@ -132,7 +123,6 @@ module TicTacToe
     			subject.add_move("o", 6)
     			subject.add_move("o", 7)
     			subject.add_move("o", 8)
-
     			expect(subject.winner).to eq "o"
     		end
 
@@ -140,7 +130,6 @@ module TicTacToe
     			subject.add_move("o", 0)
     			subject.add_move("o", 3)
     			subject.add_move("o", 6)
-
     			expect(subject.winner).to eq "o"
     		end
 
@@ -148,7 +137,6 @@ module TicTacToe
     			subject.add_move("o", 1)
     			subject.add_move("o", 4)
     			subject.add_move("o", 7)
-
     			expect(subject.winner).to eq "o"
     		end 
 
@@ -156,7 +144,6 @@ module TicTacToe
     			subject.add_move("o", 2)
     			subject.add_move("o", 5)
     			subject.add_move("o", 8)
-
     			expect(subject.winner).to eq "o"    			
     		end
 
@@ -164,7 +151,6 @@ module TicTacToe
     			subject.add_move("o", 0)
     			subject.add_move("o", 4)
     			subject.add_move("o", 8)	  
-
     			expect(subject.winner).to eq "o"			
     		end
 
@@ -172,7 +158,6 @@ module TicTacToe
     			subject.add_move("o", 2)
     			subject.add_move("o", 4)
     			subject.add_move("o", 6)
-
     			expect(subject.winner).to eq "o"
     		end
     	end
@@ -189,7 +174,6 @@ module TicTacToe
     		subject.add_move("o", 6)
     		subject.add_move("x", 7)
     		subject.add_move("o", 8)		
-    		
     		expect(subject.draw?).to eq true				
     	end	
 
@@ -201,22 +185,27 @@ module TicTacToe
     		subject.add_move("o", 4)
     		subject.add_move("x", 5)
     		subject.add_move("o", 6)
-    		subject.add_move("x", 7)
-    			
-    		
+    		subject.add_move("x", 7) 				
     		expect(subject.draw?).to eq false				
     	end					
     end		
     
 
     describe "game_ended?" do
-    	it "should return true false"
-    	# based on if all cells filled?
+    	context "#when game_ended?"
+        it "should return true if game has been won" do
+    	   subject.add_move("x", 0)
+           subject.add_move("x", 1)
+           subject.add_move("x", 2)
+           expect(subject.game_ended?).to eq true
+        end
+        # based on if all cells filled?
     	# or there is a winner
     	
+
     	context "game started" do
     		it "should not have ended" do
-    			expect(subject.game_ended?).to eq false		
+    		    expect(subject.game_ended?).to eq false		
     		end
     	end
 
@@ -225,7 +214,6 @@ module TicTacToe
     			subject.add_move("x", 2)
     			subject.add_move("x", 4)
     			subject.add_move("x", 6)
-    			
     			expect(subject.game_ended?).to eq true	
     		end
     	end
