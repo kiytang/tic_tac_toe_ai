@@ -49,7 +49,7 @@ module TicTacToe
     it "should avoid_fork_scenario_4" do
       board.add_move("x", 0)
       board.add_move("o", 4)
-      board.add_move("x", 6)
+      board.add_move("x", 5)
       expect(computer.move.index).to eq 1  
     end
 
