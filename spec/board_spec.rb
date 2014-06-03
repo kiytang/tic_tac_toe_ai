@@ -6,14 +6,14 @@ module TicTacToe
     subject {Board.new}
 
     describe "empty?" do
-        it "returns true when empty" do
-        expect(subject.empty?(0)).to be_true
-        end
+      it "returns true when empty" do
+         expect(subject.empty?(0)).to be_true
+      end
         
-        it "returns false when cell occupied" do
-            subject.add_move("x", 0)
-            expect(subject.empty?(0)).to be_false
-        end
+      it "returns false when cell occupied" do
+          subject.add_move("x", 0)
+          expect(subject.empty?(0)).to be_false
+      end
     end
 
     describe "display_board" do
@@ -192,16 +192,17 @@ module TicTacToe
     
 
     describe "game_ended?" do
-    	context "#when game_ended?"
+    	context "#when game_ended?" do
         it "should return true if game has been won" do
     	   subject.add_move("x", 0)
            subject.add_move("x", 1)
            subject.add_move("x", 2)
            expect(subject.game_ended?).to eq true
         end
-        # based on if all cells filled?
-    	# or there is a winner
-    	it "should return true if game is a draw" do
+
+            # based on if all cells filled?
+        	# or there is a winner
+      	it "should return true if game has been drawn" do
             subject.add_move("x", 0)
             subject.add_move("o", 1)
             subject.add_move("x", 2)
@@ -220,14 +221,15 @@ module TicTacToe
            subject.add_move("x", 2)
            expect(subject.game_ended?).to eq false
         end
-
-    	context "game started" do
-    		it "should not have ended" do
-    		    expect(subject.game_ended?).to eq false		
+      end
+        
+    	context "#game started" do 
+        it "should not have ended" do
+    		  expect(subject.game_ended?).to eq false		
     		end
     	end
 
-    	context "when 'x' has won" do
+    	context "#when 'x' has won" do
     		it "should return true" do
     			subject.add_move("x", 2)
     			subject.add_move("x", 4)
@@ -235,8 +237,16 @@ module TicTacToe
     			expect(subject.game_ended?).to eq true	
     		end
     	end
-    end
-  end
-end
-end
 
+      context "#when 'o' has won" do
+        it "should return true" do
+          subject.add_move("o", 2)
+          subject.add_move("o", 4)
+          subject.add_move("o", 6)
+          expect(subject.game_ended?).to eq true  
+        end
+      end
+    end
+   end
+ end
+end
