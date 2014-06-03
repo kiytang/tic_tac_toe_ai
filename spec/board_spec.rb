@@ -214,6 +214,13 @@ module TicTacToe
             expect(subject.game_ended?).to eq true
         end
 
+        it "should return false if game has not been won" do
+           subject.add_move("x", 0)
+           subject.add_move("-", 1)
+           subject.add_move("x", 2)
+           expect(subject.game_ended?).to eq false
+        end
+
     	context "game started" do
     		it "should not have ended" do
     		    expect(subject.game_ended?).to eq false		
