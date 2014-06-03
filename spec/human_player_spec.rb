@@ -6,7 +6,7 @@ module TicTacToe
     let(:human){HumanPlayer.new("x", board)}
 
     it "returns a valid move" do
-      human.stub(:prompt_for_move).and_return(0)
+      Prompter.stub(:get_move).and_return(0)
       expect(human.move).to be_a Cell
     end
 

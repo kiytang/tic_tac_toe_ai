@@ -13,8 +13,7 @@ module TicTacToe
     end
 
     def prompt_for_move
-      print "To select your move, please enter a number between 0 to 8: "
-      return Cell.new(gets.chomp.to_i)
+      return Cell.new(Prompter.get_move)
     end
 
     def reprompt
@@ -23,5 +22,12 @@ module TicTacToe
       return prompt_for_move
     end
 
+  end
+
+  class Prompter
+    def self.get_move
+      print "To select your move, please enter a number between 0 to 8: "
+      gets.chomp.to_i
+    end
   end
 end
