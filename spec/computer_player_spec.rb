@@ -1,4 +1,5 @@
 require "spec_helper"
+require "byebug"
 
 module TicTacToe
   describe ComputerPlayer do
@@ -43,21 +44,21 @@ module TicTacToe
       board.add_move("x", 5)
       board.add_move("o", 4)
       board.add_move("x", 6)
-      expect(computer.move.index).to eq 7  
+      expect([7,8].include?(computer.move.index)).to be_true
     end
 
     it "should avoid_fork_scenario_4" do
       board.add_move("x", 0)
       board.add_move("o", 4)
       board.add_move("x", 5)
-      expect(computer.move.index).to eq 1  
+      expect([1,2].include?(computer.move.index)).to be_true 
     end
 
     it "should avoid_fork_scenario_5" do
       board.add_move("x", 3)
       board.add_move("o", 4)
       board.add_move("x", 8)
-      expect(computer.move.index).to eq 6 
+      expect([6,7].include?(computer.move.index)).to be_true
     end
 
     it "should avoid_fork_scenario_6" do
@@ -95,9 +96,17 @@ module TicTacToe
       expect(computer.move.index).to eq 2
     end
 
+    it "should not get invalid moves in secenario x" do
+      board.add_move("x",0)
+      board.add_move("o",1)
+      board.add_move("x",2)
+      board.add_move("x",3)
+      board.add_move("o",4)
+      board.add_move("o",6)
 
-   
-
-
-  end
+      board.add_move("x",7)
+      # byebug
+      expect(board.valid_move?(computer.move.index)).to be_true
+    end
+   end
 end

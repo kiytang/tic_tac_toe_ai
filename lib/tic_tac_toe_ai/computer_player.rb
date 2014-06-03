@@ -15,12 +15,13 @@ module TicTacToe
     private
 
     def ai_move
+      # pick ||= next_strategy
       pick = center_move
 
       #Attempt winning move
       pick ||= winning_cell_for_marker(@marker)
 
-      #Block opponent
+      #Block opponent   
       pick ||= winning_cell_for_marker(@opponent_marker)
 
       pick ||= avoid_opposite_fork
@@ -32,10 +33,8 @@ module TicTacToe
       pick ||= avoid_fork_scenario_7
       pick ||= avoid_fork_scenario_8
       pick ||= avoid_fork_scenario_9
-      pick ||= avoid_fork_scenario_10
-      
+      pick ||= avoid_fork_scenario_10 
       pick ||= random_corner
-      # pick ||= next_strategy
       pick ||= random_side
 
       return pick
@@ -50,11 +49,11 @@ module TicTacToe
     end
 
     def random_corner
-      Cell::CORNERS.select{|index| @board.empty?(index)}.sample
+      @board.select_valid_cells(Cell::CORNERS).sample
     end
 
     def random_side
-      Cell::SIDES.select{|index| @board.empty?(index)}.sample
+      @board.select_valid_cells(Cell::SIDES).sample
     end
 
     def avoid_opposite_fork
@@ -64,53 +63,45 @@ module TicTacToe
     end
 
     def avoid_fork_scenario_3
-      if (opponent_in(5) && opponent_in(6)) 
-        return 7 #|| 8
-      end
+      avoid_scenario([5,6], [7, 8])
     end
 
     def avoid_fork_scenario_4
-      if (opponent_in(0) && opponent_in(5))
-        return 1 #|| 2
-      end
+      avoid_scenario([0,5], [1, 2])
     end
 
     def avoid_fork_scenario_5
-      if (opponent_in(3) && opponent_in(8)) 
-        return 6 #|| 7
-      end
+      avoid_scenario([3,8], [6, 7])
     end
 
     def avoid_fork_scenario_6
-      if (opponent_in(2) && opponent_in(3))
-        return 0
-      end
+      avoid_scenario([2,3], 0)
     end
 
     def avoid_fork_scenario_7
-      if (opponent_in(3) && opponent_in(7))
-        return 6
-      end
+      avoid_scenario([3,7], 6)
     end
 
     def avoid_fork_scenario_8
-      if (opponent_in(5) && opponent_in(7))
-        return 8
-      end
+      avoid_scenario([5,7], 8)
     end
 
     def avoid_fork_scenario_9
-      if (opponent_in(1) && opponent_in(3))
-        return 0
-      end
+      avoid_scenario([1,3], 0)
     end
 
     def avoid_fork_scenario_10
-      if (opponent_in(1) && opponent_in(5))
-        return 2
-      end
+      avoid_scenario([1,5], 2)
     end
 
+    def avoid_scenario(opponent_in_all, potential_moves)
+      # If pased a single index instead of an array, make it into an Array
+      potential_moves = [potential_moves] if potential_moves.class != Array
+
+      if opponent_in_all.all?{|cell| opponent_in(cell) }
+        return @board.select_valid_cells(potential_moves).sample
+      end
+    end
 
     def opponent_in(index)
       @board.board[index] == @opponent_marker
