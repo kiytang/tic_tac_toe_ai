@@ -33,15 +33,15 @@ module TicTacToe
     	it "should add a cross to board" do
     		subject.add_move("x", 4)
     		expect(subject.board).to eq (["-","-","-",
-										  "-","x","-",
-										  "-","-","-"])
+                                      "-","x","-",
+										                  "-","-","-"])
     	end
 
     	it "should add a nought to board" do
     		subject.add_move("o", 8)
     		expect(subject.board).to eq (["-","-","-",
-    									  "-","-","-",
-    									  "-","-","o"])
+    									                 "-","-","-",
+    									                 "-","-","o"])
     	end 	
     end
 

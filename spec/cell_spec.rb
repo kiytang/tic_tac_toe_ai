@@ -2,8 +2,6 @@ require "spec_helper"
 
 module TicTacToe
   describe Cell do
-
-
     context "#corner?" do
       it "returns true if corner cell" do
         expect(Cell.new(0).corner?).to be_true
@@ -16,5 +14,4 @@ module TicTacToe
       end
     end
   end
-
 end
