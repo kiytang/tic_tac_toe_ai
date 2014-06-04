@@ -23,9 +23,6 @@ Or install it yourself as:
 
     $ gem install tic_tac_toe_ai
 
-## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 
