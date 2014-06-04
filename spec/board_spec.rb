@@ -45,7 +45,7 @@ module TicTacToe
     	end 	
     end
 
-    describe "winner" do #either 'x', 'o' draw or nil
+    describe "winner" do #either 'x', 'o' draw or nil(no winner)
     	context "#when 'x' is the winner" do 
     		it "should return 'x' for 1st row win" do
     			subject.add_move("x", 0)
@@ -192,16 +192,7 @@ module TicTacToe
     
 
     describe "game_ended?" do
-    	context "#when game_ended?" do
-        it "should return true if game has been won" do
-    	   subject.add_move("x", 0)
-           subject.add_move("x", 1)
-           subject.add_move("x", 2)
-           expect(subject.game_ended?).to eq true
-        end
-
-            # based on if all cells filled?
-        	# or there is a winner
+    	context "#when game is drawn?" do
       	it "should return true if game has been drawn" do
             subject.add_move("x", 0)
             subject.add_move("o", 1)
