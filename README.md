@@ -1,6 +1,13 @@
 # TicTacToeAi
 
-TODO: Write a gem description
+###Task: 
+To create a command line Tic-Tac-Toe game using Ruby that allows a human to play against an unbeatable computer player. The computer player must never lose and should win when possible. 
+
+
+##To Run
+On the command line run:
+
+    $ ruby ./play
 
 ## Installation
 
