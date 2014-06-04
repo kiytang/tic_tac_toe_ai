@@ -9,8 +9,6 @@ module TicTacToe
 
     def play_game
       puts "#{players.first.name} has been randomly been selected as the 1st player with assigned marker #{players.first.marker}"
-      puts
-      puts board
       super
       print_outcome
     end
