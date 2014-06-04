@@ -43,7 +43,6 @@ module TicTacToe
     end
 
     def draw? #http://www.waywordradio.org/tic-tac-toe-cats-game/
-      # !winner && 
       @board.none? {|cell| cell == EMPTY_CELL }
     end
 
