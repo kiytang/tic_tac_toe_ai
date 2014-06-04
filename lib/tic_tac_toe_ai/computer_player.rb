@@ -110,20 +110,18 @@ module TicTacToe
     # [x,-,x] not consecutive
     # find index of 'dash" in any line where there are x2 of 'marker' and one dash
     def winning_cell_for_marker(marker)
-      @board.winning_combinations.each do |line|
-        if total_markers(line, marker) == 2 && line_has_empty?(line)
-          return outstanding_winning_cell(line)####
-        end
+      win_lines = lines_with_winning_move(marker)
+      return outstanding_winning_cell(win_lines.first) unless win_lines.empty?
+    end
+
+    def lines_with_winning_move(marker)
+      @board.winning_combinations.select do |line|
+        total_markers(line, marker) == 2 && line_has_empty?(line)
       end
-      return nil
     end
 
     def total_markers(line, marker)
-      total = 0
-      line.each do |cell|
-        total += 1 if @board.board[cell] == marker
-      end
-      total
+      line.count { |cell| @board.board[cell] == marker }
     end
 
     def line_has_empty?(line)

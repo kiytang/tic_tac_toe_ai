@@ -39,16 +39,10 @@ EMPTY = "-"
 
     def get_move(player)
       index = player.move.index
-      reprompt_if_invalid(player, index)
-    end
-
-    def reprompt_if_invalid(player, index)
-      if board.valid_move?(index)
-        index
-      else
-        new_move = player.reprompt
-        reprompt_if_invalid(player, new_move.index)
+      while !board.valid_move?(index)
+        index = player.reprompt.index
       end
+      return index
     end
     
     def play_again?

@@ -37,56 +37,27 @@ module TicTacToe
     end
 
     def winner
-      winning_combinations.each do |combo|
-        result = combo.map do |index|
-          x_indexes.include?(index)
-        end.uniq
-
-        win = (result == [true])
-
-        return "x" if win
-      end
-
-      winning_combinations.each do |combo|
-        result = combo.map do |index|
-          o_indexes.include?(index)
-        end.uniq
-
-        win = (result == [true])
-
-        return "o" if win
-      end
+      return "x" if winner?("x")
+      return "o" if winner?("o")
       nil
     end
 
     def draw? #http://www.waywordradio.org/tic-tac-toe-cats-game/
       # !winner && 
-      # @board.none? {|cell| cell == EMPTY_CELL }
-      @board.each do |cell|
-        if cell == EMPTY_CELL
-          return false
-        end
-      end
-      true
-      # puts "The game is a draw"
+      @board.none? {|cell| cell == EMPTY_CELL }
     end
 
     def game_ended?
-      if winner || draw?
-        return true
-      end
-      false
+      !!(winner || draw?)
     end
     
-
     private
-
-    def o_indexes
-      indexes("o")
-    end
-
-    def x_indexes
-      indexes("x")
+    def winner?(marker)
+      winning_combinations.any? do |combo|
+        combo.all? do |index|
+          indexes(marker).include?(index)
+        end
+      end
     end
 
     def indexes(input_marker)
