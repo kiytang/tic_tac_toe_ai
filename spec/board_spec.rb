@@ -185,7 +185,8 @@ module TicTacToe
     		subject.add_move("o", 4)
     		subject.add_move("x", 5)
     		subject.add_move("o", 6)
-    		subject.add_move("x", 7) 				
+    		subject.add_move("x", 7) 	
+        subject.add_move("-", 8) 			
     		expect(subject.draw?).to eq false				
     	end					
     end		
